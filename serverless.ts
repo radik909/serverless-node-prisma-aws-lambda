@@ -20,7 +20,15 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: { hello },
-  package: { individually: true },
+  package: {
+    individually: true,
+    patterns: [
+      '!node_modules/.prisma/client/libquery_engine-*',
+      'node_modules/.prisma/client/libquery_engine-rhel-*',
+      '!node_modules/prisma/libquery_engine-*',
+      '!node_modules/@prisma/engines/**',
+    ],
+  },
   custom: {
     esbuild: {
       bundle: true,
