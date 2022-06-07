@@ -1,4 +1,8 @@
 export default {
   type: 'object',
-  properties: {},
+  properties: {
+    name: { type: 'string' },
+    age: { type: 'number' },
+  },
+  required: ['name', 'age'],
 } as const;
