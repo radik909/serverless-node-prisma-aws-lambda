@@ -1,10 +1,11 @@
 import type { AWS } from '@serverless/typescript';
 
 import userCreate from '@functions/userCreate';
+import userList from '@functions/userList';
 
 const serverlessConfiguration: AWS = {
   // import the function via paths
-  functions: { userCreate },
+  functions: { userCreate, userList },
   service: 'chaos',
   frameworkVersion: '3',
   plugins: ['serverless-dotenv-plugin', 'serverless-esbuild', 'serverless-offline'],
