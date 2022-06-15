@@ -13,7 +13,7 @@ const hello: ValidatedEventAPIGatewayProxyEvent<User> = async (event) => {
 
   try {
     const user = await prisma.user.create({
-      data: { name: event.body.name, age: event.body.age },
+      data: event.body,
     });
     return formatJSONResponse({
       data: user,
