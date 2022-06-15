@@ -1,8 +1,6 @@
-export default {
-  type: 'object',
-  properties: {
-    name: { type: 'string' },
-    age: { type: 'number' },
-  },
-  required: ['name', 'age'],
-} as const;
+import { object, string, number } from 'yup';
+
+export default object({
+  name: string().required(),
+  age: number().required().positive().integer(),
+});

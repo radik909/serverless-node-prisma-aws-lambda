@@ -1,11 +1,14 @@
 import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { formatJSONResponse } from '@libs/api-gateway';
 import { createPrismaClient } from '@libs/createPrismaClient';
-import { middyfy } from '@libs/lambda';
+import { middyfyWithValidation } from '@libs/lambda';
+import { InferType } from 'yup';
 
 import schema from './schema';
 
-const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+type User = InferType<typeof schema>;
+
+const hello: ValidatedEventAPIGatewayProxyEvent<User> = async (event) => {
   const prisma = createPrismaClient();
 
   try {
@@ -26,4 +29,4 @@ const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) =
   }
 };
 
-export const main = middyfy(hello);
+export const main = middyfyWithValidation(hello, schema);
