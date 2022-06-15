@@ -29,4 +29,4 @@ const hello: ValidatedEventAPIGatewayProxyEvent<User> = async (event) => {
   }
 };
 
-export const main = middyfyWithValidation(hello, schema);
+export const main = middyfyWithValidation(hello, { bodySchema: schema });

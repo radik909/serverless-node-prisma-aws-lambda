@@ -39,10 +39,19 @@ export const schemaValidator = (schema: {
   };
 };
 
-export const middyfyWithValidation = (handler: Handler, schema: BaseSchema) => {
+type RequestSchema = {
+  bodySchema?: BaseSchema;
+  queryStringSchema?: BaseSchema;
+};
+
+export const middyfyWithValidation = (
+  handler: Handler,
+  { bodySchema, queryStringSchema }: RequestSchema,
+) => {
   return middyfy(handler).use(
     schemaValidator({
-      body: schema,
+      body: bodySchema,
+      queryStringParameters: queryStringSchema,
     }),
   );
 };
