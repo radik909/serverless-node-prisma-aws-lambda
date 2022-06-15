@@ -8,7 +8,7 @@ import schema from './schema';
 
 type User = InferType<typeof schema>;
 
-const hello: ValidatedEventAPIGatewayProxyEvent<User> = async (event) => {
+const userCreate: ValidatedEventAPIGatewayProxyEvent<User> = async (event) => {
   const prisma = createPrismaClient();
 
   try {
@@ -29,4 +29,4 @@ const hello: ValidatedEventAPIGatewayProxyEvent<User> = async (event) => {
   }
 };
 
-export const main = middyfyWithValidation(hello, { bodySchema: schema });
+export const main = middyfyWithValidation(userCreate, { bodySchema: schema });

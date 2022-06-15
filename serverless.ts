@@ -1,8 +1,10 @@
 import type { AWS } from '@serverless/typescript';
 
-import hello from '@functions/hello';
+import userCreate from '@functions/userCreate';
 
 const serverlessConfiguration: AWS = {
+  // import the function via paths
+  functions: { userCreate },
   service: 'chaos',
   frameworkVersion: '3',
   plugins: ['serverless-dotenv-plugin', 'serverless-esbuild', 'serverless-offline'],
@@ -18,17 +20,8 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
     },
   },
-  // import the function via paths
-  functions: { hello },
   package: {
     individually: true,
-    // TODO: exclude binaries for production
-    // patterns: [
-    //   '!node_modules/.prisma/client/libquery_engine-*',
-    //   'node_modules/.prisma/client/libquery_engine-rhel-*',
-    //   '!node_modules/prisma/libquery_engine-*',
-    //   '!node_modules/@prisma/engines/**',
-    // ],
   },
   custom: {
     esbuild: {
