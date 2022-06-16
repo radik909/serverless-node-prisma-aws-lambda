@@ -11,6 +11,7 @@ const serverlessConfiguration: AWS = {
   plugins: ['serverless-dotenv-plugin', 'serverless-esbuild', 'serverless-offline'],
   provider: {
     name: 'aws',
+    region: 'ap-southeast-1',
     runtime: 'nodejs14.x',
     apiGateway: {
       minimumCompressionSize: 1024,
