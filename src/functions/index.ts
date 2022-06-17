@@ -1,2 +1,7 @@
-export { default as userCreate } from './userCreate';
-export { default as userList } from './userList';
+import userCreate from './userCreate';
+import userList from './userList';
+
+export default {
+  userCreate,
+  userList,
+};

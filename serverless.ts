@@ -1,13 +1,10 @@
 import type { AWS } from '@serverless/typescript';
-
-import userCreate from '@functions/userCreate';
-import userList from '@functions/userList';
+import functions from '@functions/index';
 
 const serverlessConfiguration: AWS = {
-  // import the function via paths
-  functions: { userCreate, userList },
   service: 'chaos',
   frameworkVersion: '3',
+  functions,
   plugins: ['serverless-dotenv-plugin', 'serverless-esbuild', 'serverless-offline'],
   provider: {
     name: 'aws',
@@ -24,6 +21,7 @@ const serverlessConfiguration: AWS = {
   },
   package: {
     individually: true,
+    patterns: ['node_modules/.prisma/**/*'],
   },
   custom: {
     esbuild: {
